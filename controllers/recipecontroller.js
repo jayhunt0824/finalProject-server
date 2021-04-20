@@ -1,10 +1,12 @@
 const { Router } = require("express");
 const { Recipe } = require("../models");
-const validateSession = require("../middleware/validate-session");
+const validateSession = require("../middleware/validateSession");
 const router = Router();
 
 router.post("/create", validateSession, function (req, res) {
-  console.log(req.user.id);
+  // if (req.user.role != "Admin") {
+  //   res.json({ message: "You are not an Admin!!!" });
+  // }
   const recipeEntry = {
     name: req.body.name,
     ingredients: req.body.ingredients,
@@ -56,7 +58,7 @@ router.put("/update/:id", validateSession, function (req, res) {
   };
 
   const query = {
-    where: { id: req.params.id, owner: req.user.id },
+    where: { id: req.params.id, userId: req.user.id },
   };
 
   Recipe.update(updateRecipe, query)
@@ -66,7 +68,7 @@ router.put("/update/:id", validateSession, function (req, res) {
 
 router.delete("/delete/:id", validateSession, function (req, res) {
   const query = {
-    where: { id: req.params.id },
+    where: { id: req.params.id, userId: req.user.id },
     // include: "user",
   };
   Recipe.destroy(query)

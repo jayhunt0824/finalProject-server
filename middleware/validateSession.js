@@ -1,11 +1,14 @@
 const jwt = require("jsonwebtoken");
-const { User } = require("../models");
+const User = require("../models");
+
 const validateSession = (req, res, next) => {
   const token = req.headers.authorization;
+  console.log("token --> ", token);
   if (!token) {
-    return res.status(403).send({ auth: false, message: "No Token Provided" });
+    return res.status(403).send({ auth: false, message: "No token provided" });
   } else {
-    jwt.verify(token, "test", (err, decodeToken) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decodeToken) => {
+      console.log("decodeToken -->", decodeToken);
       if (!err && decodeToken) {
         User.findOne({
           where: {
@@ -13,7 +16,9 @@ const validateSession = (req, res, next) => {
           },
         })
           .then((user) => {
+            console.log("user --> ", user);
             if (!user) throw err;
+            console.log("req --> ", req);
             req.user = user;
             return next();
           })
