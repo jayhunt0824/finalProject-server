@@ -6,7 +6,7 @@ const validateSession = require("../middleware/validateSession");
 
 const router = Router();
 router.get("/get", function (req, res) {
-  User.findAll({ where: { id: 1 }, include: ["recipe"] }).then(
+  User.findAll({ where: { id: 1 }, include: ["myrecipes"] }).then(
     function findOneSuccess(data) {
       res.json(data);
     },

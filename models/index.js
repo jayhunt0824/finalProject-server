@@ -1,17 +1,17 @@
 const User = require("./user");
-const Recipe = require("./recipe");
+const MyRecipes = require("./myrecipes");
 const Comments = require("./comments");
 
 // Setup Associations
-User.hasMany(Recipe);
-Recipe.belongsTo(User);
-Recipe.hasMany(Comments);
-Comments.belongsTo(Recipe);
+User.hasMany(MyRecipes);
+MyRecipes.belongsTo(User);
+MyRecipes.hasMany(Comments);
+Comments.belongsTo(MyRecipes);
 
 // User.hasMany(Comments);
 // Comments.belongsTo(User);
 module.exports = {
   User,
-  Recipe,
+  MyRecipes,
   Comments,
 };

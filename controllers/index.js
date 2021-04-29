@@ -1,5 +1,5 @@
 module.exports = {
   User: require("./usercontroller"),
-  Recipe: require("./recipecontroller"),
+  MyRecipes: require("./recipecontroller"),
   Comments: require("./commentscontroller"),
 };
