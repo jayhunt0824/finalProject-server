@@ -11,6 +11,7 @@ const app = Express();
 const controllers = require("./controllers");
 
 // Parse the body of all requests as JSON
+app.use(require("./middleware/cors"))
 app.use(Express.json());
 
 app.use("/user", controllers.User);
