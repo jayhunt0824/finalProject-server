@@ -9,11 +9,11 @@ router.post("/create", validateSession, (req, res) => {
   //   res.json({ message: "You are not an Admin!!!" });
   // }
   const recipeEntry = {
-    name: req.body.myrecipes.name,
-    ingredients: req.body.myrecipes.ingredients,
-    directions: req.body.myrecipes.directions,
-    categories: req.body.myrecipes.categories,
-    photoURL: req.body.myrecipes.photoURL,
+    name: req.body.name,
+    ingredients: req.body.ingredients,
+    directions: req.body.directions,
+    categories: req.body.categories,
+    photoURL: req.body.photoURL,
     // adminDisplay: req.body.product.adminDisplay,
     userId: req.user.id,
   };
