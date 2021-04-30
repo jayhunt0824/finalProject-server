@@ -18,7 +18,7 @@ app.use(require("./middleware/headers"));
 app.use(Express.json());
 
 app.use("/user", controllers.User);
-app.use("/myrecipes", controllers.MyRecipes);
+app.use("/recipe", controllers.Recipe);
 app.use("/comments", controllers.Comments);
 
 db.authenticate()

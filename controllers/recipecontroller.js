@@ -2,7 +2,7 @@ const { Router } = require("express");
 // const { MyRecipes } = require("../models");
 const validateSession = require("../middleware/validateSession");
 const router = Router();
-const MyRecipes = require("../db").import("../models/myrecipes");
+const Recipe = require("../models");
 
 router.post("/create", validateSession, (req, res) => {
   // if (req.user.role != "Admin") {
@@ -18,8 +18,8 @@ router.post("/create", validateSession, (req, res) => {
     userId: req.user.id,
   };
 
-  MyRecipes.create(recipeEntry)
-    .then((myrecipes) => res.status(200).json(myrecipes))
+  Recipe.create(recipeEntry)
+    .then((myrecipes) => res.status(200).json(recipe))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
@@ -28,8 +28,8 @@ router.get("/get", validateSession, function (req, res) {
     where: { userId: req.user.id },
     include: "user",
   };
-  MyRecipes.findAll(query)
-    .then((myrecipes) => res.status(200).json(myrecipes))
+  Recipe.findAll(query)
+    .then((recipe) => res.status(200).json(recipe))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
@@ -38,8 +38,8 @@ router.get("/mine", validateSession, function (req, res) {
     where: { userId: req.user.id },
     include: "user",
   };
-  MyRecipes.findAll(query)
-    .then((myrecipes) => res.status(200).json(myrecipes))
+  Recipe.findAll(query)
+    .then((recipe) => res.status(200).json(recipe))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
@@ -48,8 +48,8 @@ router.get("/:name", validateSession, function (req, res) {
     where: { name: req.params.name },
     include: "user",
   };
-  MyRecipes.findOne(query)
-    .then((myrecipes) => res.status(200).json(myrecipes))
+  Recipe.findOne(query)
+    .then((recipe) => res.status(200).json(recipe))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
@@ -65,8 +65,8 @@ router.put("/update/:id", validateSession, function (req, res) {
     where: { id: req.params.id, userId: req.user.id },
   };
 
-  MyRecipes.update(updateRecipe, query)
-    .then((myrecipes) => res.status(200).json(myrecipes))
+  Recipe.update(updateRecipe, query)
+    .then((recipe) => res.status(200).json(recipe))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
@@ -75,8 +75,8 @@ router.delete("/delete/:id", validateSession, function (req, res) {
     where: { id: req.params.id, userId: req.user.id },
     // include: "user",
   };
-  MyRecipes.destroy(query)
-    .then((myrecipes) => res.status(200).json(myrecipes))
+  Recipe.destroy(query)
+    .then((recipe) => res.status(200).json(recipe))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
