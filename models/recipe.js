@@ -19,6 +19,10 @@ const Recipe = db.define("recipe", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  photoURL: {
+    type: DataTypes.STRING(2000), //to limit the data
+    allowNull: false,
+  },
   // userId: {
   //   type: DataTypes.INTEGER,
   // },

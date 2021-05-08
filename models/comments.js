@@ -5,9 +5,9 @@ const Comments = db.define("comments", {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  rating: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+  photoURL: {
+    type: DataTypes.STRING(2000), //to limit the data
+    allowNull: false,
   },
 });
 
