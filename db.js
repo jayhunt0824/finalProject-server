@@ -1,12 +1,18 @@
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
-  dialectOptions: {
-      ssl: {
-          require: true,
-          rejectUnauthorized: false, // very important
-        }
-    }
+
+//comment in and out if need to go back to local and comment back in before redeployment
+  // dialectOptions: {
+  //     ssl: {
+  //         require: true,
+  //         rejectUnauthorized: false, // very important
+  //       }
+  //   }
+
+
+
+
 })
 
 sequelize.authenticate().then(

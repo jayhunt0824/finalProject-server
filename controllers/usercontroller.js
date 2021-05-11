@@ -34,6 +34,7 @@ router.post("/signup", function (req, res) {
         user: user,
         message: "User Successfully Created",
         sessionToken: token,
+        role: user.role,
       });
     })
     .catch(function (err) {

@@ -37,14 +37,19 @@ router.put("/update/:id", validateSession, function (req, res) {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-router.delete("/delete/:id", validateSession, function (req, res) {
+router.delete("/delete/:id", validateSession,  function (req, res){
+  // const role =  await req.user.role
+  if (role.user.role === "Admin") {
   const query = {
     where: { id: req.params.id, userId: req.user.id },
    
   };
+  models.user
   Comments.destroy(query)
     .then((comments) => res.status(200).json(comments))
-    .catch((err) => res.status(500).json({ error: err }));
+    .catch((err) => res.status(500).json({ error: err }))
+}
+
 });
 
 
